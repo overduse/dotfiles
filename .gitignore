@@ -1,0 +1,7 @@
+# Ignore OS-specific files
+.DS_Store
+
+# Ignore cache directories from tools
+zsh/zim/
+starship/cache/
+
