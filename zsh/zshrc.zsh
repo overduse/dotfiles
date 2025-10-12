@@ -77,7 +77,10 @@ for key ('k') bindkey -M vicmd ${key} history-substring-search-up
 for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 unset key
 
+# Load and rebindkey ^T -> ^F
 source $ZSH/fzf.zsh
+bindkey -r '^T'
+bindkey '^F' fzf-file-widget
 
 # Above zim setting
 

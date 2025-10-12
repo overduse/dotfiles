@@ -24,5 +24,6 @@ export FZF_DEFAULT_OPTS="
 --style full
 --preview 'fzf-preview.sh {}'
 --bind 'focus:transform-header:file --brief {}'
---margin '0,3%'
+--margin '1,3%'
 "
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#c0caf5,bg:#24283b,hl:#7dcfff --color=fg+:#a9b1d6,bg+:#1a1b26,hl+:#2ac3de --color=info:#cfc9c2,prompt:#f7768e,pointer:#bb9af7 --color=marker:#9ece6a,spinner:#7aa2f7,header:#73daca'
