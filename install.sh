@@ -26,10 +26,10 @@ printf "${C_YELLOW}Starting to link configuration files...${C_RESET}\n\n"
 # Step 2: Define files list to link
 # ---------------------------------
 declare -A files_to_link=(
-  ["$DOTFILES_DIR/zsh/.zprofile"]="$HOME/.zprofile"
-  ["$DOTFILES_DIR/zsh/.zshrc"]="$HOME/.zshrc"
-  ["$DOTFILES_DIR/zsh/.alias"]="$HOME/.alias"
-  ["$DOTFILES_DIR/zsh/.zimrc"]="$HOME/.zimrc"
+  ["$DOTFILES_DIR/zsh/zprofile.zsh"]="$HOME/.zprofile"
+  ["$DOTFILES_DIR/zsh/zshrc.zsh"]="$HOME/.zshrc"
+  ["$DOTFILES_DIR/zsh/alias.zsh"]="$HOME/.alias"
+  ["$DOTFILES_DIR/zsh/zimrc.zsh"]="$HOME/.zimrc"
   ["$DOTFILES_DIR/lazygit/config.yml"]="$HOME/.config/lazygit/config.yml"
   ["$DOTFILES_DIR/tmux/tmux.conf"]="$HOME/.config/tmux/tmux.conf"
   # ["$DOTFILES_DIR/git/.gitconfig"]="$HOME/.gitconfig"
