@@ -117,3 +117,5 @@ eval "$(zoxide init zsh)"
 
 # Starship for prompt
 eval "$(starship init zsh)"
+
+clear && ff

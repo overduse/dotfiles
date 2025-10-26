@@ -32,6 +32,7 @@ declare -A files_to_link=(
   ["$DOTFILES_DIR/zsh/zimrc.zsh"]="$HOME/.zimrc"
   ["$DOTFILES_DIR/lazygit/config.yml"]="$HOME/.config/lazygit/config.yml"
   ["$DOTFILES_DIR/tmux/tmux.conf"]="$HOME/.config/tmux/tmux.conf"
+  ["$DOTFILES_DIR/fastfetch/config.jsonc"]="$HOME/.config/fastfetch/config.jsonc"
   # ["$DOTFILES_DIR/git/.gitconfig"]="$HOME/.gitconfig"
   # ["$DOTFILES_DIR/nvim"]="$HOME/.config/nvim"
 )
