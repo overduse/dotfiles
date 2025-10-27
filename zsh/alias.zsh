@@ -5,8 +5,13 @@ alias cat='bat -pp'
 alias lg='lazygit'
 alias gs='git status'
 
-# Aliases: tmux
+# Aliases: tmux & tmuxifier
 alias tn='tmux new-session -s'
 alias tk='tmux kill-session -t'
 alias tl='tmux list-sessions'
 alias ta='tmux attach-session'
+
+alias tf='tmuxifier'
+
+alias ff='fastfetch'
+

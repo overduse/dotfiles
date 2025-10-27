@@ -117,3 +117,7 @@ eval "$(zoxide init zsh)"
 
 # Starship for prompt
 eval "$(starship init zsh)"
+
+
+export PATH="$HOME/.config/tmux/plugins/tmuxifier/bin:$PATH"
+eval "$(tmuxifier init -)"
