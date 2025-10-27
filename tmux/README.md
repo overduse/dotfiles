@@ -64,3 +64,5 @@ Plugins are managed via [TPM](https://github.com/tmux-plugins/tpm):
 | [`tmux-plugins/tmux-copycat`](https://github.com/tmux-plugins/tmux-copycat) | Enhances tmux search with predefined searches for standard patterns. |
 | [`tmux-plugins/tmux-resurrect`](https://github.com/tmux-plugins/tmux-resurrect) | Manually persists tmux environments across system restarts. |
 | [`tmux-plugins/tmux-continuum`](https://github.com/tmux-plugins/tmux-continuum) | Continuous saving of tmux environment (automates resurrect). |
+| [`jimeh/tmuxifier`](https://github.com/jimeh/tmuxifier) | Powerful session manager for tmux, using shell scripts for layouts. |
+| [`isik-V/tmux-floaX`](https://github.com/omerxx/tmux-floax) | Floating panes in Tmux. |
