@@ -10,7 +10,7 @@ export http_proxy=http://127.0.0.1:7890
 export all_proxy=socks5://127.0.0.1:7890
 
 # Starship
-export STARSHIP_CONFIG="$HOME/dotfiles/starship/starship_zsh.toml"
+export STARSHIP_CONFIG="$HOME/dotfiles/starship/starship.toml"
 export STARSHIP_CACHE="$HOME/dotfiles/starship/cache"
 
 # Brew
