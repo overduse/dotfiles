@@ -12,6 +12,9 @@ if initialize_session "$session_name"; then
     split_v 20
     run_cmd "cava"
     select_pane 0
+    split_v 50
+    run_cmd "cmatrix"
+    select_pane 0
     run_cmd "fastfetch"
 
     new_window "workspace"

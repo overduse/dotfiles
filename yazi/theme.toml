@@ -1,0 +1,13 @@
+[flavor]
+dark  = "dracula" # dracula | everforest-medium
+
+[mgr]
+
+# Tab
+tab_width = 12
+
+# # Border
+border_symbol = " "
+border_style = {fg = "gray"}
+
+
