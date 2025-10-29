@@ -27,7 +27,7 @@ Contains all configuration files for Zsh, managed by [ZimFW](https://zimfw.sh/).
 To deploy this configuration, run the `install.sh` script located in the parent `dotfiles` directory.
 
 ```bash
-# From the root of the dotfiles repository
+# Execute the ./install.sh script under dotfiles/zsh
 ./install.sh
 ```
 
@@ -36,7 +36,10 @@ To deploy this configuration, run the `install.sh` script located in the parent 
 The installation script **does not copy** these files. Instead, it creates **symbolic links** (symlinks) from your home directory to the files within this repository.
 
 The script creates a link like this:
+
 `~/.zshrc` -> `~/dotfiles/zsh/zshrc.zsh`
+
 `~/.zprofile` -> `~/dotfiles/zsh/zprofile.zsh`
+
 `~/.zimrc` -> `~/dotfiles/zsh/zimrc.zsh`
 
