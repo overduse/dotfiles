@@ -1,4 +1,4 @@
-# Alias
+# dotfiles/zsh/alias.zsh
 alias google='curl -v -I https://www.google.com/'
 alias la='ls -la'
 alias cat='bat -pp'
@@ -12,6 +12,5 @@ alias tl='tmux list-sessions'
 alias ta='tmux attach-session'
 
 alias tf='tmuxifier'
-
 alias ff='fastfetch'
 

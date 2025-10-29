@@ -5,3 +5,7 @@
 zsh/zim/
 starship/cache/
 
+# Ignore yazi cache & package track
+yazi/flavors/
+yazi/plugins/
+yazi/package.toml

@@ -1,4 +1,4 @@
-
+# zimrc.zsh
 zmodule environment
 zmodule input
 zmodule termtitle
@@ -9,5 +9,3 @@ zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-history-substring-search
 zmodule zdharma-continuum/fast-syntax-highlighting
 zmodule hlissner/zsh-autopair
-zmodule agkozak/zsh-z
-zmodule Aloxaf/fzf-tab
