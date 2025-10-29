@@ -1,4 +1,6 @@
-# History
+# zshrc.zsh
+
+# --- History ---
 setopt HIST_IGNORE_ALL_DUPS
 bindkey -v  # vim mode
 
@@ -41,9 +43,9 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root line regexp)
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
 
-# ------------------
-# Initialize modules
-# ------------------
+# ------------------- #
+# Initialize modules  #
+# ------------------- #
 ZIM_HOME=$ZSH/zim
 # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
@@ -85,7 +87,24 @@ bindkey '^F' fzf-file-widget
 # Above zim setting
 
 # Alias
-source ~/.alias
+if [ -f "$ZSH/alias.zsh" ]; then
+    source "$ZSH/alias.zsh"
+fi
+
+# Yazi function
+function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd < "$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
+}
+
+# Starship for prompt
+eval "$(starship init zsh)"
+
+export PATH="$HOME/.config/tmux/plugins/tmuxifier/bin:$PATH"
+eval "$(tmuxifier init -)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -101,23 +120,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-# Yazi function
-function y() {
-    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-    yazi "$@" --cwd-file="$tmp"
-    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        builtin cd -- "$cwd"
-    fi
-    rm -f -- "$tmp"
-}
-
-# Zoxide initialize
-eval "$(zoxide init zsh)"
-
-# Starship for prompt
-eval "$(starship init zsh)"
-
-
-export PATH="$HOME/.config/tmux/plugins/tmuxifier/bin:$PATH"
-eval "$(tmuxifier init -)"
