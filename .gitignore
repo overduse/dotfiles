@@ -9,3 +9,5 @@ starship/cache/
 yazi/flavors/
 yazi/plugins/
 yazi/package.toml
+
+nvim/lazy-lock.json
