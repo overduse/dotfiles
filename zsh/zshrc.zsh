@@ -120,3 +120,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# Load local secrets (not tracked by git)
+[[ -f "$ZSH/local.zsh" ]] && source "$ZSH/local.zsh"

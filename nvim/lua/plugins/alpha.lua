@@ -42,7 +42,7 @@ return{
         '',
       }
       dashboard.section.buttons.val = {
-        dashboard.button("t", "  Todo List", ":TodoFzfLua <cr>"),
+        dashboard.button("t", "  Todo List", ":TodoFzfLua<cr>"),
         dashboard.button("y", "󰇥  Yazi Manager", ":Yazi cwd<cr>"),
         dashboard.button("l", "  LazyGit", ":LazyGit<cr>"),
         dashboard.button("f", "󰈞  Find files", ":FzfLua files<cr>"),

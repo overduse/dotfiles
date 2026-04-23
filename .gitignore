@@ -11,3 +11,6 @@ yazi/plugins/
 yazi/package.toml
 
 nvim/lazy-lock.json
+
+# Ignore local secrets
+zsh/local.zsh

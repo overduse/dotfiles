@@ -5,7 +5,7 @@ keymap.set('n', 'x', '"_x')
 
 -- Increment/decrement
 keymap.set('n', '+', '<C-a>')
-keymap.set('n', '-', '<C-x>')
+keymap.set('n', '_', '<C-x>')
 
 -- New tab
 keymap.set('n', 'te', '<Cmd>tabedit<CR>')
@@ -36,3 +36,11 @@ keymap.set('n', 'k', [[v:count?'k':'gk']], { noremap = true, expr = true })
 
 -- Paste without affecting the registers
 keymap.set({ 'n', 'x' }, '<leader>p', '"0p"')
+
+-- 折叠快捷键
+keymap.set('n', 'za', 'za', opts)
+keymap.set('n', 'zA', 'zA', opts)
+keymap.set('n', 'zo', 'zo', opts)
+keymap.set('n', 'zO', 'zO', opts)
+keymap.set('n', 'zc', 'zc', opts)
+keymap.set('n', 'zC', 'zC', opts)
