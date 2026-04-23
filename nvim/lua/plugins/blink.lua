@@ -1,34 +1,36 @@
 return {
-  'saghen/blink.cmp',
+  "saghen/blink.cmp",
+  version = "1.*",
+  event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
-    'rafamadriz/friendly-snippets'
+    "L3MON4D3/LuaSnip",
+    "rafamadriz/friendly-snippets",
   },
-  version = '1.*',
   opts = {
     keymap = {
-      preset = 'default',
-      -- ['<C-B>'] = { 'show', 'show_documentation', 'hide_documentation' },
-      ["<C-U>"] = { "scroll_documentation_up", "fallback" },
-      ["<C-D>"] = { "scroll_documentation_down", "fallback" },
-    },
-
-    appearance = {
-      nerd_font_variant = 'mono'
+      preset = "super-tab",
+      ["<CR>"] = { "accept", "fallback" },
+      ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-d>"] = { "scroll_documentation_down", "fallback" },
     },
     completion = {
+      ghost_text = {
+        enabled = true,
+      },
       documentation = {
-        auto_show = true
-      }
-    },
-    sources = {
-      default = {
-        'lsp', 'path', 'snippets', 'buffer'
+        auto_show = true,
       },
     },
-    fuzzy = {
-      implementation = "prefer_rust_with_warning"
-    }
+    signature = {
+      enabled = true,
+      window = {
+        max_height = 3,
+        max_width = 60,
+        border = "rounded",
+      },
+    },
+    sources = {
+      default = { "lsp", "path", "snippets", "buffer" },
+    },
   },
-  opts_extend = { "sources.default" }
 }
-

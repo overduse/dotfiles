@@ -13,12 +13,15 @@ export STARSHIP_CACHE="$HOME/dotfiles/starship/cache"
 
 # FZF Options
 export FZF_DEFAULT_OPTS="
---style full
---preview 'fzf-preview.sh {}'
---bind 'focus:transform-header:file --brief {}'
 --margin '1,3%'
---color=fg:#c0caf5,bg:#24283b,hl:#7dcfff
---color=fg+:#a9b1d6,bg+:#1a1b26,hl+:#2ac3de
---color=info:#cfc9c2,prompt:#f7768e,pointer:#bb9af7
---color=marker:#9ece6a,spinner:#7aa2f7,header:#73daca
+--color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284
+--color=fg:#C6D0F5,header:#E78284,info:#CA9EE6,pointer:#F2D5CF
+--color=marker:#BABBF1,fg+:#C6D0F5,prompt:#CA9EE6,hl+:#E78284
+--color=selected-bg:#51576D
+--color=border:#737994,label:#C6D0F5
 "
+# 注释掉 preview 相关选项，因为 fzf-lua 会自己管理预览
+# --preview 'fzf-preview.sh {}'
+# --bind 'focus:transform-header:file --brief {}'
+
+

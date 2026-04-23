@@ -11,7 +11,7 @@ sort_dir_first = true
 sort_translit  = false
 linemode       = "mtime"
 show_hidden    = false
-show_symlink   = true
+show_symlinks  = true
 scrolloff      = 5
 mouse_events   = [ "click", "scroll" ]
 title_format   = "Yazi: {cwd}"
@@ -19,9 +19,9 @@ title_format   = "Yazi: {cwd}"
 [preview]
 wrap            = "no"
 tab_size        = 4
-max_width       = 1024
-max_height      = 1024
-cache_dir       = ""
+max_width       = 768
+max_height      = 768
+cache_dir       = "~/.cache/yazi"
 image_delay     = 30
 image_filter    = "triangle"
 image_quality   = 80
@@ -31,8 +31,9 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 [opener]
 edit = [
     { run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-    { run = 'code %*',    orphan = true, desc = "code",           for = "windows" },
-    { run = 'code -w %*', block = true,  desc = "code (block)",   for = "windows" },
+    { run = 'code "$@"',    block = true, desc = "Code",   for = "macos" },
+    { run = 'code %*',      orphan = true, desc = "code",  for = "windows" },
+    { run = 'code -w %*',   block = true,  desc = "code (block)", for = "windows" },
 ]
 open = [
     { run = 'xdg-open "$1"',                desc = "Open", for = "linux" },
@@ -92,9 +93,6 @@ prepend_fetchers = [
     # git
     {id = "git", name = "*", run = "git"},
     {id = "git", name = "*/", run = "git"},
-    # mactag
-    {id = "mactag", name = "*", run = "mactag"},
-    {id = "mactag", name = "*/", run = "mactag"},
 ]
 
 prepend_previewers = [

@@ -1,141 +1,186 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
-[░▒▓](#9A348E)\
-$os\
-$username\
-[](bg:#DA627D fg:#9A348E)\
-$directory\
-[](fg:#DA627D bg:#FCA17D)\
-$git_branch\
-$git_status\
-[](fg:#FCA17D bg:#86BBD8)\
-$c\
-$elixir\
-$elm\
-$golang\
-$gradle\
-$haskell\
-$java\
-$julia\
-$nodejs\
-$nim\
-$rust\
-$scala\
-$conda\
-[](fg:#86BBD8 bg:#06969A)\
-$docker_context\
-[](fg:#06969A bg:#33658A)\
-$time\
-[ ](fg:#33658A)\
-"""
+$directory$git_branch$git_status$git_commit$git_state$git_metrics$docker_context$c$rust$golang$nodejs$python$conda$jobs$cmd_duration$status
+$line_break$character"""
+
+right_format = """$time"""
+
+palette = 'catppuccin_mocha'
+
+# --- User & Host (SSH only) ---
 
 [username]
-show_always = true
-style_user = "bg:#9A348E"
-style_root = "bg:#9A348E"
-format = '[$user ]($style)'
-disabled = false
+ssh_only = true
+style_user = "bold peach"
+style_root = "bold red"
+format = "[$user]($style)"
 
-[os]
-style = "bg:#9A348E"
-disabled = true
+[hostname]
+ssh_only = true
+style = "peach"
+format = "[@$hostname]($style) "
+
+# --- Directory ---
 
 [directory]
-style = "bg:#DA627D"
-format = "[ $path ]($style)"
+style = "bold blue"
 truncation_length = 3
 truncation_symbol = "…/"
+format = "[$path]($style) "
 
 [directory.substitutions]
 "Documents" = "󰈙 "
 "Downloads" = " "
-"Music" = " "
+"Music" = "󰝚 "
 "Pictures" = " "
+"Developer" = "󰲋 "
+
+# --- Git ---
+
+[git_branch]
+symbol = " "
+style = "mauve"
+format = "[› $symbol$branch]($style) "
+
+[git_status]
+style = "yellow"
+format = "([$all_status$ahead_behind]($style))"
+modified = "*"
+staged = "+"
+untracked = "?"
+deleted = "-"
+renamed = "»"
+conflicted = "!"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+stashed = "≡"
+
+[git_commit]
+style = "overlay0"
+format = "[@$hash]($style) "
+commit_hash_length = 7
+only_detached = true
+
+[git_state]
+style = "bold red"
+format = "([$state]($style))"
+rebase = "rebase"
+merge = "merge"
+revert = "revert"
+cherry_pick = "cherry"
+bisect = "bisect"
+am = "am"
+am_or_rebase = "am/rebase"
+
+[git_metrics]
+disabled = false
+format = "([+$added](green) [-$deleted](red))"
+
+# --- Language & Runtime ---
 
 [c]
 symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
+style = "teal"
+format = "[› $symbol$version]($style) "
 
-[cpp]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[docker_context]
-symbol = " "
-style = "bg:#06969A"
-format = '[ $symbol $context ]($style)'
-
-[elixir]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[elm]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[git_branch]
-symbol = ""
-style = "bg:#FCA17D"
-format = '[ $symbol $branch ]($style)'
-
-[git_status]
-style = "bg:#FCA17D"
-format = '[$all_status$ahead_behind ]($style)'
+[rust]
+symbol = " "
+style = "peach"
+format = "[› $symbol$version]($style) "
 
 [golang]
 symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[gradle]
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[haskell]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[java]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[julia]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
+style = "sky"
+format = "[› $symbol$version]($style) "
 
 [nodejs]
-symbol = ""
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
+symbol = " "
+style = "green"
+format = "[› $symbol$version]($style) "
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+detect_folders = ["node_modules"]
 
-[nim]
-symbol = "󰆥 "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[rust]
-symbol = ""
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[scala]
-symbol = ""
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
+[python]
+symbol = " "
+style = "yellow"
+format = "[› $symbol$version( $virtualenv)]($style) "
 
 [conda]
-symbol = ""
-style = "bg:#86BBD8"
-format = '[ $symbol $environment ]($style)'
+symbol = '󰌒 '
+style = "green"
+format = "[› $symbol$environment]($style) "
+
+[docker_context]
+symbol = " "
+style = "blue"
+format = "[› $symbol$context]($style) "
+
+# --- Right Prompt ---
 
 [time]
 disabled = false
-time_format = "%R" # Hour:Minute Format
-style = "bg:#33658A"
-format = '[ ♥ $time ]($style)'
+time_format = "%H:%M:%S"
+style = "overlay0"
+format = "[$time]($style)"
+
+[cmd_duration]
+min_time = 2000
+format = "[› took $duration]($style) "
+style = "overlay0"
+disabled = false
+
+[status]
+disabled = false
+format = "[› err:$status]($style) "
+style = "bold red"
+
+# --- Background Jobs ---
+
+[jobs]
+threshold = 1
+number_threshold = 1
+format = "[› $symbol$number]($style) "
+symbol = "⚙ "
+style = "bold blue"
+
+# --- Prompt Character ---
+
+[line_break]
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+vimcmd_replace_one_symbol = "[❮](bold lavender)"
+vimcmd_replace_symbol = "[❮](bold lavender)"
+vimcmd_visual_symbol = "[❮](bold yellow)"
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"

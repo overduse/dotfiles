@@ -33,12 +33,11 @@ color_green "  ✅ Yazi (ya) is installed."
 
 # --- Step 3: Install macOS-specific Dependencies ---
 if [[ "$(uname)" == "Darwin" ]]; then
-  color_yellow "› Running on macOS. Checking for Homebrew and 'tag' dependency..."
+  color_yellow "› Running on macOS. Checking for Homebrew..."
   if ! command -v brew &> /dev/null; then
-      echo "  Warning: Homebrew not found. Cannot install 'tag' for the mactag plugin."
+      echo "  Warning: Homebrew not found."
   else
-      brew install tag
-      color_green "  ✅ System dependency 'tag' is up to date."
+      color_green "  ✅ Homebrew is available."
   fi
 fi
 
@@ -47,7 +46,6 @@ color_yellow "› Installing yazi plugins..."
 ya pkg add yazi-rs/plugins:git
 ya pkg add yazi-rs/plugins:smart-enter
 ya pkg add KKV9/compress
-ya pkg add yazi-rs/plugins:mactag
 ya pkg add ahkohd/eza-preview
 ya pkg add dedukun/relative-motions
 color_green "  ✅ Yazi plugins installed."
@@ -55,7 +53,6 @@ color_green "  ✅ Yazi plugins installed."
 # --- Step 5: Install Yazi Themes (Flavors) ---
 color_yellow "› Installing yazi themes..."
 ya pkg add yazi-rs/flavors:dracula
-ya pkg add Chromium-3-Oxide/everforest-medium
 ya pkg add Rolv-Apneseth/starship
 color_green "  ✅ Yazi themes installed."
 

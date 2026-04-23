@@ -1,32 +1,23 @@
 return {
   "mikavilpas/yazi.nvim",
   event = "VeryLazy",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
   keys = {
     {
-      "<leader>-",
-      mode = { "n", "v" },
-      "<cmd>Yazi<cr>",
-      desc = "Open yazi at the current file",
-    },
-    {
-      "<leader>w",
-      "<cmd>Yazi cwd<cr>",
-      desc = "Open the file manager in nvim's working directory",
-    },
-    {
       "<leader>y",
-      "<cmd>Yazi toggle<cr>",
-      desc = "Resume the last yazi session",
+      function()
+        require("yazi").yazi()
+      end,
+      desc = "Open yazi file manager",
     },
   },
   opts = {
-    -- if you want to open yazi instead of netrw, see below for more info
-    open_for_directories = true,
-    keymaps = {
-      show_help = "<f1>",
-    },
+    floating_window_scaling_factor = 0.95,
+    yazi_floating_window_winblend = 20,
+    yazi_floating_window_border = "rounded",
+    -- yazi 关闭时会改变 neovim 的 cwd，导致 fzf-lua 的 get_root() 失效
+    change_neovim_cwd_on_close = false,
   },
-  init = function()
-    vim.g.loaded_netrwPlugin = 1
-  end,
 }

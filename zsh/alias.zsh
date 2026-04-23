@@ -14,3 +14,4 @@ alias ta='tmux attach-session'
 alias tf='tmuxifier'
 alias ff='fastfetch'
 
+alias cc='claude'

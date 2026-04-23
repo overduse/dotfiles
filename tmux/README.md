@@ -1,69 +1,139 @@
 # Tmux Configuration
 
-This is my personal Tmux configuration, designed to create an efficient, aesthetic, and intuitive terminal multiplexer environment.
+Personal tmux 3.4+ configuration with TPM (Tmux Plugin Manager) integration, focused on efficiency, aesthetics, and Vim-style operations.
 
-The core of this setup focuses on usability, featuring a `Ctrl+a` prefix, full mouse support, and Vim-like keybindings for seamless navigation. It also integrates TPM (Tmux Plugin Manager) to manage a suite of powerful plugins that enhance functionality.
+## Features
 
-## ✨ Key Features
+### Panes & Navigation
 
-- **Comfortable Prefix**: Changed the default `Ctrl+b` to the easier-to-reach `Ctrl+a`.
-- **Vim-style Navigation**: Move between panes seamlessly using `h/j/k/l`.
-- **Mouse Mode**: Full support for selecting panes, resizing, and scrolling with the mouse.
-- **Aesthetic Status Bar**: A clean, informative status bar showing session name, window list, and current date.
-- **Persistent Sessions**: Automatically save and restore your workspace even after a restart, thanks to `tmux-resurrect` and `tmux-continuum`.
-- **Enhanced Copying**: Integrated with `tmux-yank` for easy copying to the system clipboard.
+- **Prefix Remap**: `Ctrl+b` → `Ctrl+a`, more ergonomic
+- **Window Indexing**: Windows numbered 1~9 (via `base-index 1`), no window 0
+- **Vim-style Pane Navigation**: `h/j/k/l` to move between panes (requires Prefix)
+- **Prefix-free Alt Navigation**: `Alt + h/j/k/l` to switch panes directly
+- **Pane Resizing**: `Prefix + Ctrl+h/j/k/l` resize by 5 cells
+- **Window Switching**: `Alt + 1~9` jump directly to window N
+- **Window Reordering**: `Alt + Shift+←/→` swap current window with left/right neighbor
 
-## 🚀 Installation
+### Visual Experience
 
-1.  **Install Tmux**:
-    ```bash
-    # macOS
-    brew install tmux
+- **True Color Support**: Configured with `tmux-256color` + True Color (`*:RGB`)
+- **Styled Pane Borders**: Inactive panes in black, active pane in magenta
+- **Bottom Status Bar**: Left shows icon + Session name, right shows zoom flag + date
+- **Window Indicators**: Normal windows show `●`, current window color varies by zoom state
 
-    # Ubuntu/Debian
-    sudo apt-get install tmux
-    ```
+### Copy & Clipboard
 
-2.  **Install TPM (Tmux Plugin Manager)**:
-    Clone the TPM repository to your tmux configuration directory.
-    ```bash
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    ```
+- **Vi-style Copy Mode**: `set -g mode-keys vi`, supports `v`/`C-v`/`y` and more
+- **tmux-yank Integration**: Write directly to system clipboard from copy mode
 
-3.  **Setup & Install Plugins**:
-    - Symlink or copy the `tmux.conf` from this repository to `~/.config/tmux/tmux.conf` or `~/.tmux.conf`.
-    - Start Tmux and press **`Prefix + I`** (capital "I") to install all plugins listed in the configuration.
+### Session Persistence
 
-## ⌨️ Core Keybindings
+- **tmux-resurrect**: Manually save/restore tmux workspace
+- **tmux-continuum**: Auto-save on a timer; seamless restore after restart
 
-Most custom keybindings are designed to reduce keystroke complexity.
+### Other
 
-**Prefix**: `Ctrl + a`
+- **Mouse Mode**: Select panes, resize, and scroll with mouse
+- **Auto Renumber Windows**: Deleted window numbers are automatically compacted
+- **Auto Path Loading**: New panes open in the current directory via `#{pane_current_path}`
+- **Quick Reload**: `Prefix + r` to reload tmux.conf
+- **lazygit Popup**: `Prefix + g` opens lazygit in a popup at current path
 
-| Key | Function |
+---
+
+## Keybindings
+
+### Prefix
+
+| Key | Description |
 | :--- | :--- |
-| `Prefix` `\|` | Split pane horizontally (in current path) |
-| `Prefix` `_` | Split pane vertically (in current path) |
-| `Prefix` `h`/`j`/`k`/`l` | Move focus to the left/down/up/right pane |
-| `Prefix` `Ctrl`+`h`/`j`/`k`/`l` | Resize pane by 5 cells |
-| `Alt` + `h`/`j`/`k`/`l` | Switch panes **without prefix** |
-| `Alt` + `1`...`9` | Switch to window N **without prefix** |
-| `Alt` + `Shift` + `←`/`→` | Swap current window position left/right |
+| `Ctrl+a` | New prefix (replaces default `Ctrl+b`) |
 
+### Window & Pane Operations
 
-## 🔌 Plugins
+| Key | Description |
+| :--- | :--- |
+| `Prefix + %` | Split horizontally (left/right) |
+| `Prefix + "` | Split vertically (top/bottom) |
+| `Prefix + h/j/k/l` | Move focus to left/down/up/right pane |
+| `Prefix + Ctrl+h/j/k/l` | Expand current pane by 5 cells in each direction |
+| `Alt + h/j/k/l` | Move focus **without prefix** |
+| `Alt + 1~9` | Jump to window N **without prefix** |
+| `Alt + Shift+←/→` | Swap current window with left/right neighbor |
+| `Prefix + r` | Reload tmux.conf |
 
-Plugins are managed via [TPM](https://github.com/tmux-plugins/tpm):
+### Copy Mode (Vi-style)
+
+| Key | Description |
+| :--- | :--- |
+| `Prefix + [` | Enter copy mode |
+| `v` | Begin character selection |
+| `Ctrl+v` | Begin block selection |
+| `y` | Copy selection and exit |
+| `q` | Exit copy mode |
+
+### Plugin Keybindings
+
+| Key | Description |
+| :--- | :--- |
+| `Prefix + g` | Open lazygit popup at current directory |
+| `Prefix + I` | Install/update all TPM plugins |
+| `Prefix + O` | Fuzzy session switcher via **sessionx** |
+| `Prefix + p` | Toggle floating pane via **floaX** |
+| `Prefix + P` | floaX floating pane menu |
+| `Prefix + F` | **tmux-fzf** fuzzy search (sessions, windows, etc.) |
+
+---
+
+## Installation
+
+```bash
+# 1. Install tmux (if not already installed)
+brew install tmux        # macOS
+sudo apt-get install tmux  # Ubuntu/Debian
+
+# 2. Clone TPM
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# 3. Create config directories
+mkdir -p ~/.config/tmux
+
+# 4. Symlink tmux.conf
+ln -s ~/dotfiles/tmux/tmux.conf ~/.config/tmux/tmux.conf
+
+# 5. Create session root directory
+mkdir -p ~/workspace
+
+# 6. Inside tmux, install plugins
+#    Press Prefix + I (capital I)
+```
+
+---
+
+## Plugins
 
 | Plugin | Description |
 | :--- | :--- |
-| [`tmux-plugins/tpm`](https://github.com/tmux-plugins/tpm) | Tmux Plugin Manager itself. |
-| [`sainnhe/tmux-fzf`](https://github.com/sainnhe/tmux-fzf) | Integrates FZF for powerful fuzzy searching of sessions, windows, etc. |
-| [`tmux-plugins/tmux-yank`](https://github.com/tmux-plugins/tmux-yank) | Enables copying to the system clipboard in standard tmux copy mode. |
-| [`tmux-plugins/tmux-open`](https://github.com/tmux-plugins/tmux-open) | Quickly open highlighted files or URLs in their default applications. |
-| [`tmux-plugins/tmux-copycat`](https://github.com/tmux-plugins/tmux-copycat) | Enhances tmux search with predefined searches for standard patterns. |
-| [`tmux-plugins/tmux-resurrect`](https://github.com/tmux-plugins/tmux-resurrect) | Manually persists tmux environments across system restarts. |
-| [`tmux-plugins/tmux-continuum`](https://github.com/tmux-plugins/tmux-continuum) | Continuous saving of tmux environment (automates resurrect). |
-| [`jimeh/tmuxifier`](https://github.com/jimeh/tmuxifier) | Powerful session manager for tmux, using shell scripts for layouts. |
-| [`omerxx/tmux-floaX`](https://github.com/omerxx/tmux-floax) | Floating panes in Tmux. |
-| [`omerxx/tmux-sessionX`](https://github.com/omerxx/tmux-sessionX) | A fuzzy Tmux session manager with preview capabilities, deleting, renaming and more! |
+| `tmux-plugins/tpm` | Tmux Plugin Manager |
+| `sainnhe/tmux-fzf` | fzf integration for fuzzy session/window search |
+| `tmux-plugins/tmux-yank` | Copy to system clipboard from copy mode |
+| `tmux-plugins/tmux-open` | Open highlighted files/URLs in default apps |
+| `tmux-plugins/tmux-copycat` | Enhanced search with preset patterns |
+| `tmux-plugins/tmux-resurrect` | Manual save/restore of workspace |
+| `tmux-plugins/tmux-continuum` | Auto-save timer (pairs with resurrect) |
+| `omerxx/tmux-floax` | Floating panes |
+| `omerxx/tmux-sessionx` | Fuzzy session manager with preview, delete, rename |
+
+---
+
+## tmux.conf Structure
+
+```
+tmux.conf
+├── General settings          # renumber, mouse, allow-rename, escape-time
+├── Look & Feel              # terminal, borders, status bar
+├── Keybindings              # prefix, split, navigate, resize, window ops
+├── copy-mode                # vi copy mode bindings
+├── reload                   # config reload shortcut
+└── TPM + Plugins            # plugin list and tpm init
+```
