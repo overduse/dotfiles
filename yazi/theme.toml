@@ -1,13 +1,12 @@
 [flavor]
-dark  = "dracula" # dracula | everforest-medium
+dark  = "gruvbox-material"
+light = "gruvbox-material"
 
 [mgr]
 
 # Tab
 tab_width = 12
 
-# # Border
+# Border
 border_symbol = " "
 border_style = {fg = "gray"}
-
-

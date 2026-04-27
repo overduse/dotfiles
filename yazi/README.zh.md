@@ -1,122 +1,58 @@
-# Yazi 配置
+# Yazi 配置记录
 
-本目录包含 [Yazi](https://github.com/sxyazi/yazi) 文件管理器的所有配置文件。
+## 文件说明
 
-## 插件与主题安装
+| 文件 | 用途 |
+|------|------|
+| `yazi.toml` | 主配置 |
+| `keymap.toml` | 快捷键 |
+| `theme.toml` | 主题/外观 |
+| `init.lua` | 插件初始化 |
+| `install.sh` | 一键安装脚本 |
 
-要安装本配置所需的所有插件、主题和系统依赖（如 macOS 上的 `tag`），请在本目录下运行安装脚本：
+## 配置修改（基于官方 preset）
+
+- `ratio = [2, 3, 4]` — 三栏比例
+- `linemode = "mtime"` — 显示修改时间
+- `preview.max_width = 1024` / `max_height = 1024`
+
+## 快速安装
 
 ```bash
 ./install.sh
 ```
 
-## 文件说明
+## 已安装
 
-| 文件 | 说明 |
-| :--- | :--- |
-| `yazi.toml` | 主配置文件 |
-| `keymap.toml` | 键盘快捷键配置 |
-| `package.toml` | 插件列表 |
-| `theme.toml` | 主题/色彩方案 |
-| `init.lua` | Yazi 初始化脚本 |
-| `install.sh` | 插件/主题安装脚本 |
-| `flavors/` | 色彩方案 |
-| `plugins/` | 插件目录 |
-| `README.md` | 英文原文 |
-| `README.zh.md` | 本文档 |
+### 风格包
+```bash
+ya pkg add matt-dong-123/gruvbox-material
+```
+- `theme.toml`: `[flavor] dark = "gruvbox-material"`
 
-## 主要功能
+### 插件
 
-- **smart-enter**：`l` 进入目录或打开文件（智能判断）
-- **compress**：`c a a/p/h/l/u/7/r` — 多种压缩格式与选项
-- **eza-preview**：`e t/-/_/$/*/g i/g s` — 树形/列表预览，支持多种切换
-- **VS Code**：`E` 在当前目录打开 VS Code
-- **Dracula 主题**（深色）
+**smart-enter** — `l` 智能进入目录/打开文件
+```bash
+ya pkg add yazi-rs/plugins:smart-enter
+```
+- `keymap.toml`: `prepend_keymap` 中绑定 `l` → `plugin smart-enter`
 
-## 快捷键
+**smart-paste** — 智能粘贴到悬停目录或当前目录
+```bash
+ya pkg add yazi-rs/plugins:smart-paste
+```
+- `keymap.toml`: `p` → `plugin smart-paste`（替换原 `paste`）
 
-### 导航
+**git** — 文件列表显示 Git 状态
+```bash
+ya pkg add yazi-rs/plugins:git
+```
+- `init.lua`: `require("git"):setup({ order = 1500 })`
+- `yazi.toml`: `[[plugin.prepend_fetchers]]` 注册 git fetcher
 
-| 键 | 功能 |
-| :--- | :--- |
-| `j/k` 或 `↑↓` | 上/下移动光标 |
-| `g g` | 跳到顶部 |
-| `G` | 跳到底部 |
-| `h` 或 `←` | 返回父目录 |
-| `l` 或 `→` | 进入子目录 |
-| `H` | 返回上一个目录 |
-| `L` | 前进 |
-| `C-d/u` | 上下半页 |
-| `C-b/f` | 上下整页 |
+## 删除插件
 
-### 文件操作
-
-| 键 | 功能 |
-| :--- | :--- |
-| `<Space>` | 切换选中状态 |
-| `v` | 进入可视化模式 |
-| `y` | 复制（yank） |
-| `x` | 剪切 |
-| `p` | 粘贴 |
-| `d` | 移到废纸篓 |
-| `D` | 永久删除 |
-| `a` | 新建文件/目录 |
-| `r` | 重命名 |
-| `o` 或 `Enter` | 打开文件 |
-| `-` | 绝对路径符号链接 |
-| `_` | 相对路径符号链接 |
-
-### 搜索与过滤
-
-| 键 | 功能 |
-| :--- | :--- |
-| `/` | 查找下一个 |
-| `?` | 查找上一个 |
-| `n/N` | 下一个/上一个搜索结果 |
-| `f` | 智能过滤 |
-| `s` | 按名称搜索（fd） |
-| `S` | 按内容搜索（rg） |
-| `.` | 切换隐藏文件显示 |
-
-### 排序
-
-| 键 | 功能 |
-| :--- | :--- |
-| `, m/M` | 按修改时间排序 |
-| `, b/B` | 按创建时间排序 |
-| `, e/E` | 按扩展名排序 |
-| `, a/A` | 按字母顺序排序 |
-| `, n/N` | 自然排序 |
-| `, s/S` | 按文件大小排序 |
-
-### 跳转
-
-| 键 | 功能 |
-| :--- | :--- |
-| `g h` | 回到家目录 |
-| `g c` | 跳转到 `~/.config` |
-| `g d` | 跳转到 `~/Downloads` |
-| `g <Space>` | 交互式跳转 |
-| `Z` | 通过 fzf 跳转 |
-| `z` | 通过 zoxide 跳转 |
-
-### 标签页
-
-| 键 | 功能 |
-| :--- | :--- |
-| `t` | 新建标签页 |
-| `1-9` | 切换到第 N 个标签页 |
-| `[` / `]` | 上/下一个标签页 |
-| `{` / `}` | 与上/下标签页交换 |
-
-### 自定义快捷键
-
-| 键 | 功能 |
-| :--- | :--- |
-| `l` | 进入目录或打开文件 |
-| `c a a` | 压缩文件 |
-| `c a p` | 压缩（带密码） |
-| `c a h` | 压缩（带密码+文件头） |
-| `c a u` | 压缩（密码+头+级别） |
-| `e t` | 切换树形/列表预览 |
-| `E` | 在 VS Code 中打开 |
+```bash
+ya pkg delete yazi-rs/plugins:插件名
+```
