@@ -34,14 +34,14 @@ KEYTIMEOUT=1
 # zsh-autosuggestions
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 # Customize the style that the suggestions are shown with.
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#bb9af7,bold"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374,bold"
 
 # zsh-syntax-highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root line regexp)
 
 # Customize the main highlighter styles.
 typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
+ZSH_HIGHLIGHT_STYLES[comment]='fg=#928374'
 
 # ------------------- #
 # Initialize modules  #
@@ -86,7 +86,11 @@ bindkey '^F' fzf-file-widget
 
 # Above zim setting
 
-# Alias
+# Zoxide
+if (( ${+commands[zoxide]} )); then
+    eval "$(zoxide init zsh)"
+fi
+
 if [ -f "$ZSH/alias.zsh" ]; then
     source "$ZSH/alias.zsh"
 fi
@@ -103,23 +107,8 @@ function y() {
 # Starship for prompt
 eval "$(starship init zsh)"
 
-export PATH="$HOME/.config/tmux/plugins/tmuxifier/bin:$PATH"
-eval "$(tmuxifier init -)"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 # Load local secrets (not tracked by git)
 [[ -f "$ZSH/local.zsh" ]] && source "$ZSH/local.zsh"
+
+# Add user binaries to PATH
+export PATH="$HOME/.local/bin:$PATH"
