@@ -11,7 +11,7 @@ return {
     lsp = {
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        ["vim.lsp.util.stylize_markdown"] = true,
+        -- ["vim.lsp.util.stylize_markdown"] = true,  -- deprecated in 0.12
         ["vim.lsp.util.apply_text_edits"] = true,
         ["cmp.entry.get_documentation"] = true,
       },

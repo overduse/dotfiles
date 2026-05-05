@@ -46,9 +46,9 @@ return{
         -- dashboard.button("t", "  Todo List", ":TodoFzfLua<cr>"),
         dashboard.button("y", "󰇥  Yazi Manager", ":Yazi cwd<cr>"),
         dashboard.button("l", "  LazyGit", ":LazyGit<cr>"),
-        dashboard.button("f", "󰈞  Find files", ":FzfLua files<cr>"),
-        dashboard.button("g", "󰊄  Grep", ":FzfLua live_grep <cr>"),
-        dashboard.button("r", "  Oldfiles", ":FzfLua oldfiles<cr>"),
+        dashboard.button("f", "󰈞  Find files", ":Telescope find_files<cr>"),
+        dashboard.button("g", "󰊄  Grep", ":Telescope live_grep<cr>"),
+        dashboard.button("r", "  Oldfiles", ":Telescope oldfiles<cr>"),
         -- dashboard.button("c", "  Configuration", ":e ~/.config/nvim/ <cr>"),
         dashboard.button("q", "󰗼  Quit Neovim", ":qa<cr>"),
       }

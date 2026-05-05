@@ -1,6 +1,6 @@
 [flavor]
-dark  = "gruvbox-material"
-light = "gruvbox-material"
+dark  = "tokyo-night"
+light = "tokyo-night"
 
 [mgr]
 
