@@ -1,0 +1,22 @@
+# mako — Tokyonight Dark
+
+background-color=#1a1b26
+text-color=#c0caf5
+border-color=#7aa2f7
+progress-color=over #3b4261
+
+border-radius=8
+default-timeout=5000
+max-visible=5
+
+[urgency=low]
+border-color=#565f89
+
+[urgency=normal]
+border-color=#7aa2f7
+
+[urgency=critical]
+background-color=#f7768e
+text-color=#1a1b26
+border-color=#f7768e
+default-timeout=0

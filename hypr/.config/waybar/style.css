@@ -1,0 +1,28 @@
+* {
+    font-family: "JetBrainsMonoNL Nerd Font Propo";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #1a1b26;
+    color: #c0caf5;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: #565f89;
+}
+
+#workspaces button.active {
+    color: #7aa2f7;
+}
+
+#clock,
+#pulseaudio,
+#backlight,
+#network,
+#battery {
+    padding: 0 10px;
+    color: #a9b1d6;
+}
