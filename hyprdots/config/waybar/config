@@ -1,0 +1,181 @@
+{
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "spacing": 0,
+  "height": 32,
+  "modules-left": [ "custom/arch", "hyprland/workspaces" , "cpu","custom/seperator","memory","custom/seperator","network#speed"],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "custom/wallpaper",
+    "custom/seperator",
+    "custom/caffeine",
+    "custom/seperator",
+    "temperature#gpu",
+    "custom/seperator",
+    "custom/gh",
+    "custom/seperator",
+    "backlight",
+    "custom/seperator",
+    "pulseaudio",
+    "custom/seperator",
+    "network",
+    // "custom/seperator",
+    "battery",
+  ],
+  "custom/seperator" : {
+    "format" : "<span>|</span>"
+  },
+
+  "custom/caffeine": {
+    "format": " ",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/caffeine.sh",
+    "format-alt": "💤 "
+  },
+  "temperature#gpu": {
+    "thermal-zone": 6,
+    "critical-threshold": 80,
+    "format-critical": "{temperatureC}°C ",
+    "format": "<span color='#c099ff'> </span>{temperatureC}°C ",
+    "tooltip": false
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "scroll-step": 5,
+    "format": "{icon}",
+    "format-icons": [" 󰃞", " 󰃟", " 󰃝", " 󰃠"],
+    "tooltip": true,
+    "tooltip-format": "{percent}%"
+  },
+  "pulseaudio": {
+    "max-volume": 200,
+    "scroll-step": 5,
+    "format": "{icon}",
+    "format-bluetooth": "{icon}",
+    "format-icons": ["  ", "   ", "   "],
+    "format-muted": "   ",
+    "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click": "pamixer -t",
+    "tooltip": true,
+    "tooltip-format": "{volume}% | {desc}"
+  },
+  "network": {
+    "format-wifi": " {icon}",
+    "format-ethernet": "󰈀",
+    "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
+    "format-disconnected": "󰪎 ",
+    "interval": 5,
+    "tooltip-format-wifi": " {bandwidthDownBytes} |  {bandwidthUpBytes} | {essid}",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "exec ~/.config/rofi/wifi/wifi.sh",
+    "on-click-right": "kitty -e nmtui"
+  },
+  "network#speed": {
+    "interval": 1,
+    "format": "{ifname}%%",
+    "format-wifi": "<span color='#c3e88d' >  </span>{bandwidthDownBytes} <span  color='#ff757f'>  </span>{bandwidthUpBytes}",
+    "format-ethernet": "<span color='#c3e88d' >  </span>{bandwidthDownBytes} <span  color='#ff757f'>  </span>{bandwidthUpBytes}",
+    "format-disconnected": "󰌙",
+    "tooltip-format": "{ipaddr}",
+    "format-linked": "󰈁 {ifname} (No IP)",
+    "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+    "tooltip-format-ethernet": "{ifname} 󰌘",
+    "tooltip-format-disconnected": "󰌙 Disconnected",
+    "max-length": 22,
+    "min-length": 20,
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "<span color='#82aaff' font='Hack Nerd Font Propo'>󰍛</span>  {usage}%",
+    "on-click": "kitty btop"
+  },
+  "memory": {
+    "interval": 1,
+    "format": " <span color='#82aaff' font='Hack Nerd Font Propo'>󰘚</span>  {percentage}%",
+    "on-click": "kitty btop",
+    "tooltip-format": "{used}/{total} GiB"
+  },
+  "custom/wallpaper": {
+    "format": " <span  font='Font Awesome 6 Free'>󰸉</span>",
+    "on-click": "~/.config/waybar/scripts/change-wallpaper.sh",
+    "tooltip": false,
+    "on-click-right": "kitty -e ~/.config/waybar/scripts/select-wallpaper.sh"
+  },
+  "custom/gh": {
+    "exec": "zsh -c 'source ~/dotfiles/zsh/local.zsh; ~/.config/waybar/scripts/weekly_commits dark'",
+    "return-type": "json",
+    "interval": 2400,
+    "tooltip": true,
+    "on-click": "xdg-open https://github.com/overduse",
+    "on-click-right": "~/.config/waybar/scripts/weekly_commits DARK"
+  },
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+    },
+    "persistent-workspaces": {
+      "*": 3
+    },
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1"
+  },
+  "custom/arch": {
+    "format": "<span font='Hack Nerd Font Propo'>󰣇</span>",
+  },
+  "clock": {
+    "format": "{:%H:%M / %h %d}",
+    "tooltip": true,
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+  "custom/wallpaper": {
+    "format": "\uf03e",
+    "on-click": "~/.config/waybar/scripts/change-wallpaper.sh",
+    "tooltip": false,
+    "on-click-right": "kitty -e ~/.config/waybar/scripts/select-wallpaper.sh"
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-plugged": "",
+    "format-icons": {
+      "charging": ["󰢜 ", "󰂆 ", "󰂇 ", "󰂈 ", "󰢝 ", "󰂉 ", "󰢞 ", "󰂊 ", "󰂋 ", "󰂅 "],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "format-full": "󰂅 ",
+    "format-alt": "{icon} ",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 5,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+  },
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "blueberry"
+  },
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 600,
+      "click-to-reveal" : true,
+      "children-class": "tray-group-item"
+    },
+    "modules": ["custom/expand-icon", "tray"]
+  },
+  "custom/expand-icon": {
+    "format": " ",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 12,
+    "spacing": 12
+  }
+}
